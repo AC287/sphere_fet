@@ -4,12 +4,12 @@
 // })(jQuery);
 $(function(){
   console.log('loaded......');
-  $('.dialog').hide();
+  // $('.dialog').hide();
   $('.time.checkbox input').on("click",function(event){
     // event.stopPropagation();
     // event.preventDefault();
     console.log('input clicked.....')
-    $('.dialog').show();
-    console.log($(this)[0].id);
+    // $('.dialog').show();
+    // console.log($(this)[0].id);
   })
 });
