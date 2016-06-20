@@ -1,3 +1,6 @@
+/*
+By Arthur Chen.
+*/
 $(function(){
   console.log('loaded......');
   $(function(){ //dialog box using jquery-ui plugin.
