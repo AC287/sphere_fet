@@ -41,8 +41,10 @@ $(function(){
       $('#endAmPmForm').val(initialTime[2]);
       $('.menubox').dialog('open');
 
-      $('.menuboxForm').submit(function(event) {
+      $('.menuboxForm').unbind().submit(function(event) {
+        // .unbind() will stop firing multiple click event.
         event.preventDefault();
+        event.stopPropagation();
         saveslots();
       });
 
