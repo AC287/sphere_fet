@@ -40,6 +40,12 @@ $(function(){
       $('#startAmPmForm').val(initialTime[2]);
       $('#endAmPmForm').val(initialTime[2]);
       $('.menubox').dialog('open');
+
+      $('.menuboxForm').submit(function(event) {
+        event.preventDefault();
+        saveslots();
+      });
+
     });
   });
 
@@ -76,7 +82,8 @@ function daterange(x) {
                    ]
 }
 
-// function saveslots() {
-//   console.log('saved');
-//
-// }
+function saveslots() {
+  $('.menubox').dialog('close');
+  console.log('saved');
+
+}
