@@ -45,7 +45,9 @@ $(function(){
         // .unbind() will stop firing multiple click event.
         event.preventDefault();
         event.stopPropagation();
-        saveslots();
+        var iTime = $('#startDateForm').val() + $('#startTimeForm').val() + $('#startAmPmForm').val();
+        var eTime = $('#endDateForm').val() + $('#endTimeForm').val() + $('#endAmPmForm').val();
+        saveslots( iTime, eTime);
       });
 
     });
@@ -66,7 +68,7 @@ function splitfunction(x) { //this will split input value checkbox.
 
 }
 
-function daterange(x) {
+function daterange(i,e) {
   var menuBoxArr = ['sun12am', 'sun1230am','sun1am','sun130am','sun2am','sun230am','sun3am','sun330am','sun4am','sun430am','sun5am','sun530am','sun6am','sun630am','sun7am','sun730am','sun8am','sun830am','sun9am','sun930am','sun10am','sun1030am','sun11am','sun1130am',
                     'sun12pm', 'sun1230pm','sun1pm','sun130pm','sun2pm','sun230pm','sun3pm','sun330pm','sun4pm','sun430pm','sun5pm','sun530pm','sun6pm','sun630pm','sun7pm','sun730pm','sun8pm','sun830pm','sun9pm','sun930pm','sun10pm','sun1030pm','sun11pm','sun1130pm',
                     'mon12am', 'mon1230am','mon1am','mon130am','mon2am','mon230am','mon3am','mon330am','mon4am','mon430am','mon5am','mon530am','mon6am','mon630am','mon7am','mon730am','mon8am','mon830am','mon9am','mon930am','mon10am','mon1030am','mon11am','mon1130am',
@@ -81,11 +83,15 @@ function daterange(x) {
                     'fri12pm', 'fri1230pm','fri1pm','fri130pm','fri2pm','fri230pm','fri3pm','fri330pm','fri4pm','fri430pm','fri5pm','fri530pm','fri6pm','fri630pm','fri7pm','fri730pm','fri8pm','fri830pm','fri9pm','fri930pm','fri10pm','fri1030pm','fri11pm','fri1130pm',
                     'sat12am', 'sat1230am','sat1am','sat130am','sat2am','sat230am','sat3am','sat330am','sat4am','sat430am','sat5am','sat530am','sat6am','sat630am','sat7am','sat730am','sat8am','sat830am','sat9am','sat930am','sat10am','sat1030am','sat11am','sat1130am',
                     'sat12pm', 'sat1230pm','sat1pm','sat130pm','sat2pm','sat230pm','sat3pm','sat330pm','sat4pm','sat430pm','sat5pm','sat530pm','sat6pm','sat630pm','sat7pm','sat730pm','sat8pm','sat830pm','sat9pm','sat930pm','sat10pm','sat1030pm','sat11pm','sat1130pm',
-                   ]
+                  ];
+  console.log(menuBoxArr.indexOf(i));
+  console.log(menuBoxArr.indexOf(e));
 }
 
-function saveslots() {
+function saveslots(iTime, eTime) {
   $('.menubox').dialog('close');
-  console.log('saved');
+  // console.log(iTime);
+  // console.log(eTime);
+  daterange(iTime,eTime);
 
 }
