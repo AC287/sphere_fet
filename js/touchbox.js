@@ -1,7 +1,3 @@
-// (function($){
-//   $
-//   console.log("touchbox.js loaded");
-// })(jQuery);
 $(function(){
   console.log('loaded......');
   $(function(){ //dialog box using jquery-ui plugin.
@@ -16,21 +12,13 @@ $(function(){
         duration: 500
       },
       modal: true,
-      // buttons: {
-      //   "Save": saveslots,
-      // },
     });
     $('.time.checkbox input').click(function(){
-      // splitfunction($(this)[0].id);
+
+      //Get value from clicked slot and split it into array.
       var initialTime = splitfunction($(this)[0].id);
-      console.log(initialTime);
 
-      // console.log($(this).index());
-      // console.log(typeof initialTime[0]);
-      // console.log(typeof initialTime[1]);
-      // console.log(typeof initialTime[2]);
-      // $('#startDateForm').attr('value',initialTime[0]); //this doesn't work.
-
+      //This set default value of the menu box.
       $('#startDateForm').val(initialTime[0]);
       $('#endDateForm').val(initialTime[0]);
 
@@ -41,32 +29,30 @@ $(function(){
       $('#endAmPmForm').val(initialTime[2]);
       $('.menubox').dialog('open');
 
+      // .unbind() will stop firing multiple click event.
       $('.menuboxForm').unbind().submit(function(event) {
-        // .unbind() will stop firing multiple click event.
         event.preventDefault();
         event.stopPropagation();
+
+        //Get user input value.
         var iTime = $('#startDateForm').val() + $('#startTimeForm').val() + $('#startAmPmForm').val();
         var eTime = $('#endDateForm').val() + $('#endTimeForm').val() + $('#endAmPmForm').val();
+
+        //trigger all checked on given range.
         saveslots( iTime, eTime);
       });
 
     });
   });
-
-  // $('.time.checkbox input').on("click",function(event){
-  //   console.log('input clicked.....')
-  //   console.log($(this)[0].id);
-  // })
 });
 
 function splitfunction(x) { //this will split input value checkbox.
-  console.log(x);
   var day = x.substr(0,3);
   var time = x.substring(3,(x.length-2));
   var ampm = x.substr(-2,2);
   return [day,time,ampm]
 
-}
+};
 
 function daterangeChecked(i,e) {
   var menuBoxArr = ['sun12am', 'sun1230am','sun1am','sun130am','sun2am','sun230am','sun3am','sun330am','sun4am','sun430am','sun5am','sun530am','sun6am','sun630am','sun7am','sun730am','sun8am','sun830am','sun9am','sun930am','sun10am','sun1030am','sun11am','sun1130am',
@@ -87,23 +73,21 @@ function daterangeChecked(i,e) {
   var initialIndex = menuBoxArr.indexOf(i);
   var finalIndex = menuBoxArr.indexOf(e);
 
-  if (initialIndex < finalIndex){
+  if (initialIndex < finalIndex){ //end time is in the future.
     for (a=initialIndex; a<=finalIndex; a++) {
       $(`#${menuBoxArr[a]}`).attr('checked', 'checked');
     }
-  } else if (initialIndex > finalIndex){
+  } else if (initialIndex > finalIndex){ //end time is in the past.
     for (b=initialIndex; b>=finalIndex; b--) {
       $(`#${menuBoxArr[b]}`).attr('checked', 'checked');
     }
-  } else {
+  } else {  //everything else...
     $(`#${menuBoxArr[initialIndex]}`).attr('checked', 'checked');
   }
 };
 
 function saveslots(iTime, eTime) {
   $('.menubox').dialog('close');
-  // console.log(iTime);
-  // console.log(eTime);
   daterangeChecked(iTime,eTime);
 
-}
+};
