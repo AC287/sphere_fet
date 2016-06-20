@@ -9,15 +9,19 @@ $(function(){
       autoOpen: false,
       show:{
         effect: "fade",
-        duration: 1000
+        duration: 500
       },
       hide:{
         effect: "fade",
-        duration: 1000
-      }
+        duration: 500
+      },
+      modal: true
     });
     $('.time.checkbox input').click(function(){
       $('.menubox').dialog('open');
+      splitfunction($(this)[0].id)
+      // var initialTime = splitfunction($(this)[0].id);
+      // console.log(initialTime);
     });
   });
 
@@ -26,3 +30,7 @@ $(function(){
   //   console.log($(this)[0].id);
   // })
 });
+
+function splitfunction(x) {
+  console.log(x);
+}
